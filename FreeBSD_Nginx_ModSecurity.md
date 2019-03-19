@@ -3,7 +3,7 @@
 
 ---
 
-(1) `pkg install gmake`, needed to build ModSecurity below
+(1) `pkg install gmake wget`, needed to build ModSecurity below, and for wget below. Feel free to use `fetch` instead of `wget`.
 
 (2) ModSecurity build from source and install, in build root directory the commands
 ~~~~
