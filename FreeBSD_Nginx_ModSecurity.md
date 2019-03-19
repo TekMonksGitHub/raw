@@ -5,7 +5,7 @@
 
 (1) `pkg install gmake wget`, needed to build ModSecurity below, and for wget below. Feel free to use `fetch` instead of `wget`.
 
-(2) ModSecurity build from source and install, in build root directory the commands
+(2) To build ModSecurity from source and install. We will call whichever directory we are downloading all this as the _build root directory_. The commands are as follows
 ~~~~
 git clone https://github.com/SpiderLabs/ModSecurity
 cd ModSecurity
@@ -17,13 +17,13 @@ gmake
 gmake install
 ~~~~
 
-(3) Download NGINX code, in build root directory the commands, pick the latest release
+(3) Download NGINX code, again in build root directory. The following commands will do this. Feel free to pick the latest NGINX release instead of 1.15.9, as you wish.
 ~~~~
 wget https://nginx.org/download/nginx-1.15.9.tar.gz
 tar -xvzf nginx-1.15.9.tar.gz & rm nginx-1.15.9.tar.gz
 ~~~~
 
-(4) Build ModSecurity NGINX connector, in build root, and then make Nginx and install it
+(4) Now let's build ModSecurity NGINX connector. The following commands executed in build root directory will accomplish this.
 ~~~~
 git clone https://github.com/SpiderLabs/ModSecurity-nginx
 cd nginx-1.15.9
@@ -51,7 +51,7 @@ make
 make install
 ~~~~
 
-(4) Load the ModSecurity module, add the line in Main Context i.e. outside any {..} 
+(4) Load the ModSecurity module, in the `nginx.conf` file. Add the following line in Main NGINX Context i.e. outside any {..} 
 sections, maybe 3rd line from the top
 
 ~~~~
@@ -59,18 +59,26 @@ vi /usr/local/nginx/conf/nginx.conf
 load_module modules/ngx_http_modsecurity_module.so;
 ~~~~
 
-(5) Need to add the ModSecurity libs to the system library path, the following will do
+(5) We also need to add the ModSecurity libs to the system library path, the following will accomplish this.
 
 ~~~~
 ldconfig -m /usr/local/modsecurity/lib
 ~~~~
 
-(6) Add to /usr/sbin the following script as nginx, it takes care of non-default paths above
+(6) Add to `/usr/sbin` directory the following script. Name it as `nginx`, it takes care of non-default paths above. The permissions should be 755 for this file i.e. `chmod 755 /usr/sbin/nginx` once you have created it.
+~~~~
+vi /usr/sbin/nginx
+~~~~
+and then paste the following
 ~~~~
 #!/bin/sh
 
 ldconfig -m /usr/local/modsecurity/lib
 /usr/local/nginx/sbin/nginx $*
+~~~~
+and finally 
+~~~~
+chmod 755 /usr/sbin/nginx
 ~~~~
 
 (7) Run nginx and should see the following in `/usr/local/nginx/logs/error.log`
