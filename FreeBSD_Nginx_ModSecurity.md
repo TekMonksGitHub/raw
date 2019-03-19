@@ -1,4 +1,4 @@
-# Installing NGINX, ModSecurity on FreeBSD 12.0
+# Installing NGINX, ModSecurity on FreeBSD 12.0 in 8 Easy Steps
 ## NGINX 1.15.9, ModSecurity v3
 
 ---
@@ -51,7 +51,7 @@ make
 make install
 ~~~~
 
-(4) Load the ModSecurity module, in the `nginx.conf` file. Add the following line in Main NGINX Context i.e. outside any {..} 
+(5) Load the ModSecurity module, in the `nginx.conf` file. Add the following line in Main NGINX Context i.e. outside any {..} 
 sections, maybe 3rd line from the top
 
 ~~~~
@@ -59,13 +59,13 @@ vi /usr/local/nginx/conf/nginx.conf
 load_module modules/ngx_http_modsecurity_module.so;
 ~~~~
 
-(5) We also need to add the ModSecurity libs to the system library path, the following will accomplish this.
+(6) We also need to add the ModSecurity libs to the system library path, the following will accomplish this.
 
 ~~~~
 ldconfig -m /usr/local/modsecurity/lib
 ~~~~
 
-(6) Add to `/usr/sbin` directory the following script. Name it as `nginx`, it takes care of non-default paths above. The permissions should be 755 for this file i.e. `chmod 755 /usr/sbin/nginx` once you have created it.
+(7) Add to `/usr/sbin` directory the following script. Name it as `nginx`, it takes care of non-default paths above. The permissions should be 755 for this file i.e. `chmod 755 /usr/sbin/nginx` once you have created it.
 ~~~~
 vi /usr/sbin/nginx
 ~~~~
@@ -81,7 +81,7 @@ and finally
 chmod 755 /usr/sbin/nginx
 ~~~~
 
-(7) Run nginx and should see the following in `/usr/local/nginx/logs/error.log`
+(8) Run nginx and should see the following in `/usr/local/nginx/logs/error.log`
 ~~~~
 [notice] 1076#0: ModSecurity-nginx v1.0.0 (rules loaded inline/local/remote: 0/0/0)
 ~~~~
