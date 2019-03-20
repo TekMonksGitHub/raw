@@ -3,7 +3,7 @@
 
 ---
 
-(1) `pkg install gmake wget`, needed to build ModSecurity below, and for wget below. Feel free to use `fetch` instead of `wget`.
+(1) `pkg install gmake wget git-lite`, needed to build ModSecurity below, and for wget below. Feel free to use `fetch` instead of `wget`.
 
 (2) To build ModSecurity from source and install. We will call whichever directory we are downloading all this as the _build root directory_. The commands are as follows
 ~~~~
