@@ -85,3 +85,7 @@ chmod 755 /usr/sbin/nginx
 ~~~~
 [notice] 1076#0: ModSecurity-nginx v1.0.0 (rules loaded inline/local/remote: 0/0/0)
 ~~~~
+
+
+### Uninstalling
+Just one command, `rm -rf /usr/local/modsecurity ; rm -rf /usr/local/nginx`
