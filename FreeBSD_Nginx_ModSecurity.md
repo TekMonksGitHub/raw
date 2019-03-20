@@ -20,7 +20,7 @@ gmake install
 (3) Download NGINX code, again in build root directory. The following commands will do this. Feel free to pick the latest NGINX release instead of 1.15.9, as you wish.
 ~~~~
 wget https://nginx.org/download/nginx-1.15.9.tar.gz
-tar -xvzf nginx-1.15.9.tar.gz & rm nginx-1.15.9.tar.gz
+tar -xvzf nginx-1.15.9.tar.gz ; rm nginx-1.15.9.tar.gz
 ~~~~
 
 (4) Now let's build ModSecurity NGINX connector. The following commands executed in build root directory will accomplish this.
