@@ -89,3 +89,17 @@ chmod 755 /usr/sbin/nginx
 
 ### Uninstalling
 Just one command, `rm -rf /usr/local/modsecurity ; rm -rf /usr/local/nginx`
+
+### Errata
+If following instructions to configure ModSecurity using this guide
+
+https://docs.nginx.com/nginx-waf/admin-guide/nginx-plus-modsecurity-waf-installation-logging/
+
+And see the following issue
+~~~~
+nginx: [emerg] "modsecurity_rules_file" directive Rules error. File: /usr/local/nginx/conf/modsec/modsecurity.conf. Line: 236. Column: 17. Failed to locate the unicode map file from: unicode.mapping Looking at: 'unicode.mapping', 'unicode.mapping', '/usr/local/nginx/conf/modsec/unicode.mapping', '/usr/local/nginx/conf/modsec/unicode.mapping'.  in /usr/local/nginx/conf/conf.d/proxy.conf:4
+~~~~
+
+Then download this file and place in the same directory as modsecurity.conf file.
+
+https://raw.githubusercontent.com/TekMonksGitHub/raw/master/unicode.mapping
